@@ -1,10 +1,9 @@
 {
-  "name": "apigo",
+  "name": "lwap",
   "version": "0.0.0",
   "private": false,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "node ./tables/buildTable.js",
     "pm2": "pm2 start processes.pro.json "
   },
   "dependencies": {
@@ -19,7 +18,9 @@
     "serve-favicon": "~2.1.3",
     "http-proxy-middleware": "^0.17.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    
+  },
   "description": "默认端口：3001",
   "main": "app.js",
   "directories": {
@@ -29,6 +30,6 @@
     "express",
     "plugin"
   ],
-  "author": "ehuodiFE",
+  "author": "tianyanrong",
   "license": "ISC"
 }

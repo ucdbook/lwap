@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name" : "apiGo",
+    "name" : "lwap",
     "script": "./bin/www", 
     "cwd": "./",    
     // "watch":true,

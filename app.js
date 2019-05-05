@@ -14,23 +14,10 @@ app.port = process.env.PORT || 3000;
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
-//登入登出接口转发
-const goodstaxiAdmin = proxy('/goodstaxiAdmin/', {
-    target: 'http://web-goodstaxiAdmin-vip/',
-    changeOrigin: true
-});
-const ehuodiBedrockApi = proxy('/ehuodiBedrockApi/', {
-    target: 'http://web-ehuodiBedrockApi-vip/',
-    changeOrigin: true
-});
-app.use('/goodstaxiAdmin/*', goodstaxiAdmin);
-app.use('/ehuodiBedrockApi/*', ehuodiBedrockApi);
-
-
-app.use('/apigo/*', proxy({
+app.use('/lwap/*', proxy({
     target: 'http://127.0.0.1:'+app.port,
     pathRewrite: {
-        '^/apigo/': '/'
+        '^/lwap/': '/'
     }
 }));
 app.use(logger('dev'));
@@ -42,15 +29,8 @@ app.use(cors({
     origin: /http:*/,
     credentials: true
 }));
-app.use('/list', express.static(path.join(__dirname, 'apiGo/dist')));
-app.use('/backend', express.static(path.join(__dirname, 'backend/dist')));
 
 approutes(app);
-
-// app.get('*',function(req,res){  
-//      res.sendFile(path.resolve(__dirname, 'backend/dist', 'index.html'))
-// })
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
