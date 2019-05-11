@@ -1,6 +1,5 @@
 const Sequelize= require('sequelize');
 
-
 var seq = require('./connect.js').seq;
 
 var Goods = seq.define('xcxmall_goods', {
@@ -21,7 +20,7 @@ var Goods = seq.define('xcxmall_goods', {
     allowNull:true,
     comment: "名称"
   },
-  /*price:{
+  price:{
     type: Sequelize.DECIMAL,
     allowNull:true,
     comment: "售价"
@@ -41,15 +40,10 @@ var Goods = seq.define('xcxmall_goods', {
     allowNull:true,
     comment: "商品类别"
   },
-  status:{
-    type: Sequelize.SMALLINT,
+  cover_pic: {
+    type: Sequelize.TEXT,
     allowNull:true,
-    comment: "上架状态：0=下架，1=上架"
-  },
-  addtime:{
-    type: Sequelize.INTEGER,
-    allowNull:true,
-    comment: "创建时间"
+    comment: "商品类别"
   },
   is_delete:{
     type: Sequelize.INTEGER,
@@ -62,11 +56,16 @@ var Goods = seq.define('xcxmall_goods', {
     allowNull:true,
     comment: "规格的库存及价格"
   },
+  status:{
+    type: Sequelize.INTEGER,
+    allowNull:true,
+    comment: "上架状态：0=下架，1=上架"
+  },
   service:{
-    type: Sequelize.CHAR(1),
+    type: Sequelize.CHAR(2000),
     allowNull:true,
     comment: "商品服务选项"
-  },*/
+  },
 
   //dddd
   createdAt: {
