@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const WechatApp = require('../../models/WechatApp');
+const {getStoreId} = require('../../common/getStoreId');
 
 const getWxAccessToken = function(options) {
     return new Promise( function(resolve, reject) {
@@ -44,7 +45,7 @@ const getStoreApp = function(storeId) {
 
 router.post('/linmedia/wap/getMPQrcode', function(req, res) {
     const goodsId = req.body.gd || '';
-    const storeId = req.body.sd || '';
+    const storeId = getStoreId(req.body.sd) || '';
     if(!goodsId || !storeId) {
         res.json({
 			result: 'error',

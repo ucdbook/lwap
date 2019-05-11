@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const {getStoreId} = require('../../common/getStoreId');
 
 const Goods = require('../../models/Goods');
 
@@ -7,7 +8,8 @@ const Goods = require('../../models/Goods');
 router.post('/linmedia/wap/getGoods', function(req, res) {
 	const limit = parseInt(req.body.pageSize) || 10000;
 	const offset = parseInt(req.body.skipCount) || 0;
-	const storeId = parseInt(req.body.sd) || 2;
+	console.log(3333, getStoreId)
+	const storeId = getStoreId(req.body.sd) || 2;
 	const catId = parseInt(req.body.cd);
 	const keyword = req.body.keyword;
 	const sql = {

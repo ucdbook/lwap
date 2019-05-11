@@ -16,4 +16,4 @@ function dateFormat(data, arr = []) {
     })
 }
 
-exports.dateFormat = dateFormat;
+export default dateFormat;

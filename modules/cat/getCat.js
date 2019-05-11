@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const Cat = require('../../models/Cat');
+const {getStoreId} = require('../../common/getStoreId');
 
 router.post('/linmedia/wap/getCat', function(req, res) {
-    const storeId = req.body.sd || '';
+    const storeId = getStoreId(req.body.sd) || '';
     if(!storeId) {
         res.json({
 			result: 'error',
