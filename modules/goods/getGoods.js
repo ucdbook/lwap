@@ -14,7 +14,7 @@ router.post('/linmedia/wap/getGoods', function(req, res) {
 		limit:limit,
 		offset:offset,
 		order:[['id', 'DESC']],
-		where:{status:1, store_id: storeId}//, is_delete: 1
+		where:{status:1, store_id: storeId, is_delete: 0}//, 
 	};
 	if(keyword) {
 		sql.where.name = {$like:('%'+keyword+'%')};
