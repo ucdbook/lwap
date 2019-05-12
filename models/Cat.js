@@ -30,6 +30,11 @@ var Cat = seq.define('xcxmall_cat', {
     allowNull:false,
     comment: "排序"
   },
+  is_show: {
+    type: Sequelize.INTEGER,
+    allowNull:false,
+    comment: "是否显示"
+  },
   //框架自带
   createdAt: {
     field:"addtime" ,

@@ -15,7 +15,7 @@ router.post('/linmedia/wap/getCat', function(req, res) {
     }
     const sql = {
         order:[['sort', 'ASC']],
-		where:{store_id: storeId}
+		where:{store_id: storeId, is_show: 1}
     };
     Cat.findAll(sql).then(function(rows){
         res.json({
