@@ -12,7 +12,7 @@ var app = express();
 app.port = process.env.PORT || 3000;
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/favicon.ico'));
 
 app.use('/lwap/*', proxy({
     target: 'http://127.0.0.1:'+app.port,
