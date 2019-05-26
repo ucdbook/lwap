@@ -3,7 +3,7 @@ const router = express.Router();
 const request = require('request');
 const WechatApp = require('../../models/WechatApp');
 const {getStoreId} = require('../../common/getStoreId');
-
+const GoodsQrcode = require('../../models/GoodsQrcode');
 const getWxAccessToken = function(options) {
     return new Promise( function(resolve, reject) {
         request({
@@ -17,7 +17,6 @@ const getWxAccessToken = function(options) {
             //form: JSON.stringify({path:''})
         }, function(error, response, body) {
             if(!error && response.statusCode == 200) {
-                console.log(44444444444, body);
                 resolve(body);
             }
         });
@@ -39,6 +38,25 @@ const getStoreApp = function(storeId) {
             })
         }, function() {
             reject();
+        })
+    })
+}
+
+//保存二维码
+const saveMpQrcode = function(store_id, goods_id, picData) {
+    GoodsQrcode.findAll({
+        where:{goods_id: goods_id}
+    }).then(function(rows){
+        if(rows && rows.length) {
+            return;
+        }
+        console.log(11111111, store_id,'----', goods_id)
+        GoodsQrcode.create({
+            store_id:store_id,
+            goods_id: goods_id,
+            mp_qrcode: picData,
+        }).then(function(rows){
+            
         })
     })
 }
@@ -68,13 +86,16 @@ router.post('/linmedia/wap/getMPQrcode', function(req, res) {
                 form: JSON.stringify({path:'/pages/goods/goods?id=' + goodsId})
             }, function(error, response, body) {
                 if(!error && response.statusCode == 200) {
+                    const picData = 'data:image/png;base64,' + body;
                     res.json({
                         result: 'success',
                         data: {
-                            url: 'data:image/png;base64,' + body
+                            url: picData
                         },
                         msg: '查询成功'
                     });
+
+                    saveMpQrcode(storeId, goodsId, picData)
                 }
                 else {
                     res.json({
