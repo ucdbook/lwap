@@ -41,7 +41,6 @@ router.post('/linmedia/wap/getAllGoodsPic', function(req, res) {
         }}
     };
     GoodsPic.findAll(sql).then(function(rows){
-        console.log('=========1', rows.length)
         res.json({
             result: 'success',
             data: rows,

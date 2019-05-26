@@ -48,9 +48,14 @@ const saveMpQrcode = function(store_id, goods_id, picData) {
         where:{goods_id: goods_id}
     }).then(function(rows){
         if(rows && rows.length) {
+            GoodsQrcode.update({
+                store_id:store_id,
+                mp_qrcode: picData,
+            },{where:{goods_id:goods_id}}).then(function(rows){
+                
+            })
             return;
         }
-        console.log(11111111, store_id,'----', goods_id)
         GoodsQrcode.create({
             store_id:store_id,
             goods_id: goods_id,
