@@ -12,17 +12,12 @@ var app = express();
 app.port = process.env.PORT || 3000;
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/favicon.ico'));
+app.use(favicon(__dirname + '/favicon.png'));
 
-app.use('/lwap/*', proxy({
-    target: 'http://127.0.0.1:'+app.port,
-    pathRewrite: {
-        '^/lwap/': '/'
-    }
-}));
 app.use(logger('dev'));
+app.use(bodyParser({ keepExtensions: true, uploadDir: '/tmp' }));
 app.use(bodyParser.json({limit:'50mb'}));
-app.use(bodyParser.urlencoded({ limit:'50mb', extended: false }));
+app.use(bodyParser.urlencoded({ limit:'50mb', extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
@@ -39,24 +34,6 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-        // res.json({
-        //     message: err.message,
-        //     error: err
-        // });
-    });
-}
-
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
@@ -65,11 +42,6 @@ app.use(function (err, req, res, next) {
         message: err.message,
         error: {}
     });
-    // res.json({
-    //     message: err.message,
-    //     error: err
-    // });
 });
-
 
 module.exports = app;

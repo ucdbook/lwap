@@ -1,9 +1,7 @@
-const goods = require('./goods');
-const qrcode = require('./qrcode');
-const cat = require('./cat');
+
 
 module.exports = function (app) {
-    goods(app);
-    qrcode(app);
-    cat(app);
+    app.use('/componentApi/',require('./childAppApi'));
+    app.use('/componentApi/',require('./masterAppNavsApi'));
+    app.use('/componentApi/',require('./componentMockApi'));
 }
