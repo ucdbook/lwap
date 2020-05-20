@@ -29,7 +29,7 @@ const componentMockApi = (req, res) => {
 			try{
 				const mocks = eval(body);
 				let key;
-				const mockApiUrl = req.url.replace('/componentMock','');
+				const mockApiUrl = req.url.replace('/componentApi/componentMock','');
 				for(key in mocks) {
 					let newKey = key.replace(/\s+/g, ' ');
 					const reg = new RegExp('^(POST|GET) ' + mockApiUrl + '$', 'gim');
